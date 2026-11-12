@@ -236,31 +236,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="01-intro.html">1. Why Use a Cluster?</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush3">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading3">
-        <a href="02-variables_and_basic_data_types.html">2. Foundation &amp; The FAIR Principles</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush4">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading4">
-        <a href="03-lists_and_dictionaries.html">3. Walkthrough of DMP Components</a>
+        <a href="01-intro.html">1. Deploying a Plotly Dash Application on University Web Servers</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -343,7 +319,7 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>All in One View</h1>
         
-<section id="aio-01-intro"><p>Content from <a href="01-intro.html">Why Use a Cluster?</a></p>
+<section id="aio-01-intro"><p>Content from <a href="01-intro.html">Deploying a Plotly Dash Application on University Web Servers</a></p>
 <hr>
 <p>Last updated on 2026-11-12 |
 
@@ -351,818 +327,284 @@
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>Why would I be interested in High Performance Computing (HPC)?</li>
-<li>What can I expect to learn from this course?</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>Be able to describe what an HPC system is</li>
-<li>Identify how an HPC system could benefit you.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>Frequently, research problems that use computing can outgrow the
-desktop or laptop computer where they started:</p>
-<ul>
-<li><p>A statistics student wants to cross-validate their model. This
-involves running the model 1000 times – but each run takes an hour.
-Running on their laptop will take over a month!</p></li>
-<li><p>A genomics researcher has been using small datasets of sequence
-data, but soon will be receiving a new type of sequencing data that is
-10 times as large. It’s already challenging to open the datasets on
-their computer – analysing these larger datasets will probably crash
-it.</p></li>
-<li><p>An engineer is using a fluid dynamics package that has an option
-to run in parallel. So far, they haven’t used this option on their
-desktop, but in going from 2D to 3D simulations, simulation time has
-more than tripled and it might be useful to take advantage of that
-feature.</p></li>
-</ul>
-<p>In all these cases, what is needed is access to more computers than
-can be used at the same time.</p>
-<div id="and-what-do-you-do" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="and-what-do-you-do" class="callout-inner">
-<h3 class="callout-title">And what do you do?</h3>
-<div class="callout-content">
-<p>Talk to your neighbour, office mate or <a href="https://rubberduckdebugging.com/" class="external-link">rubber duck</a> about your
-research. How does computing help you do your research? How could more
-computing help you do more or better research?</p>
-</div>
-</div>
-</div>
-<div class="section level1">
-<h1 id="doing-analysis-or-running-code">Doing Analysis or Running Code<a class="anchor" aria-label="anchor" href="#doing-analysis-or-running-code"></a>
-</h1>
-<div class="section level2">
-<h2 id="a-standard-laptop-for-standard-tasks">A standard Laptop for standard tasks<a class="anchor" aria-label="anchor" href="#a-standard-laptop-for-standard-tasks"></a>
-</h2>
-<p>Today, people coding or analysing data typically work with
-laptops.</p>
-<p><img src="fig/200px-laptop-openclipartorg-aoguerrero.svg" alt="Flow Diagram for determining supvervised vs unsupervised" class="figure">.</p>
-<p>Let’s dissect what resources programs running on a laptop require: -
-the keyboard and/or touchpad is used to tell the computer what to do
-(<strong>Input</strong>) - the internal computing resources
-<strong>Central Processing Unit</strong> and <strong>Memory</strong>
-perform calculation - the display depicts progress and results
-(<strong>Output</strong>)</p>
-<p>Schematically, this can be reduced to the following:</p>
-<p><img src="fig/Simple_Von_Neumann_Architecture.svg" alt="Flow Diagram for determining supvervised vs unsupervised" class="figure">.</p>
-</div>
-<div class="section level2">
-<h2 id="when-tasks-take-too-long">When tasks take too long<a class="anchor" aria-label="anchor" href="#when-tasks-take-too-long"></a>
-</h2>
-<p>When the task to solve become heavy on computations, the operations
-are typically out-sourced from the local laptop or desktop to elsewhere.
-Take for example the task to find the directions for your next business
-trip. The capabilities of your laptop are typically not enough to
-calculate that route spontaneously. So you use website, which in turn
-runs on a server that is almost exclusively not in the same room as you
-are.</p>
-<p>{% include figure.html url=“” max-width=“20%”
-file=“/fig/servers-openclipartorg-ericlemerdy.svg” alt=“A rack half full
-with servers” caption=“” %}</p>
-<p>Note here, that a server is mostly a noisy computer mounted into a
-rack cabinet which in turn resides in a data center. The internet made
-it possible that these data centers do not require to be nearby your
-laptop. What people call <strong>the cloud</strong> is mostly a
-web-service where you can rent such servers by providing your credit
-card details and by clicking together the specs of this remote
-resource.</p>
-<p>The server itself has no direct display or input methods attached to
-it. But most importantly, it has much more storage, memory and compute
-capacity than your laptop will ever have. In any case, you need a local
-device (laptop, workstation, mobile phone or tablet) to interact with
-this remote machine, people typically call ‘a server’.</p>
-</div>
-<div class="section level2">
-<h2 id="when-one-server-is-not-enough">When one server is not enough<a class="anchor" aria-label="anchor" href="#when-one-server-is-not-enough"></a>
-</h2>
-<p>If the computational task or analysis to complete is daunting for a
-single server, larger agglomerations of servers are used. These go by
-the name of clusters or super computers.</p>
-<p><img src="fig/serverrack-openclipartorg-psteinb-basedon-ericlemerdy.svg" alt="Flow Diagram for determining supvervised vs unsupervised" class="figure">.</p>
-<p>The methodology of providing the input data, communicating options
-and flags as well as retrieving the results is quite opposite to using a
-plain laptop. Moreover, using a GUI style interface is often discarded
-in favor of using the command line. This imposes a double paradigm shift
-for prospect users:</p>
-<ol style="list-style-type: decimal">
-<li>they work with the command line (not a GUI style user
-interface)</li>
-<li>they work with a distributed set of computers (called nodes)</li>
-</ol>
-<div id="ive-never-used-a-server-have-i" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="ive-never-used-a-server-have-i" class="callout-inner">
-<h3 class="callout-title">I’ve never used a server, have I?</h3>
-<div class="callout-content">
-<p>Take a minute and think about which of your daily interactions with a
-computer may require a remote server or even cluster to provide you with
-results.</p>
-</div>
-</div>
-</div>
-<div id="keypoints1" class="callout keypoints">
-<div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
-</div>
-<span class="callout-header">Key Points</span>
-<div class="callout-inner">
-<div class="callout-content">
-<ul>
-<li>High Performance Computing (HPC) typically involves connecting to
-very large computing systems elsewhere in the world.</li>
-<li>These other systems can be used to do work that would either be
-impossible or much slower or smaller systems.</li>
-<li>The standard method of interacting with such systems is via a
-command line interface called Bash.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div></section><section id="aio-02-variables_and_basic_data_types"><p>Content from <a href="02-variables_and_basic_data_types.html">Foundation &amp; The FAIR Principles</a></p>
-<hr>
-<p>Last updated on 2026-11-12 |
-
-        <a href="https://github.com/corcor27/HCRW-workshop/edit/main/episodes/02-variables_and_basic_data_types.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>“What is an HPC system?”</li>
-<li>“How does an HPC system work?”</li>
-<li>“How do I log on to a remote HPC system?”</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>“Connect to a remote HPC system.”</li>
-<li>“Understand the general HPC system architecture.”</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<section><h2 class="section-heading" id="what-is-an-hpc-system">What is an HPC system?<a class="anchor" aria-label="anchor" href="#what-is-an-hpc-system"></a>
+<section><h2 class="section-heading" id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
 <hr class="half-width">
-<p>The words “cloud”, “cluster”, and “high-performance computing” are
-used a lot in different contexts and with varying degrees of
-correctness. So what do they mean exactly? And more importantly, how do
-we use them for our work?</p>
-<p>The <em>cloud</em> is a generic term commonly used to refer to remote
-computing resources of any kind – that is, any computers that you use
-but are not right in front of you. Cloud can refer to machines serving
-websites, providing shared storage, providing webservices (such as
-e-mail or social media platforms), as well as more traditional “compute”
-resources. An <em>HPC system</em> on the other hand, is a term used to
-describe a network of computers. The computers in a cluster typically
-share a common purpose, and are used to accomplish tasks that might
-otherwise be too big for any one computer.</p>
-</section><section><h2 class="section-heading" id="network-access">Network access<a class="anchor" aria-label="anchor" href="#network-access"></a>
-</h2>
-<hr class="half-width"></section><section><h2 class="section-heading" id="network-access-requirements">Network Access Requirements<a class="anchor" aria-label="anchor" href="#network-access-requirements"></a>
-</h2>
-<hr class="half-width">
-<p>Over the past year, the university network has been upgraded. As a
-result:</p>
-<ul>
-<li>
-<strong>General systems connected to eduroam</strong> are now
-restricted to internet access only (e.g., web browsing).<br>
-</li>
-<li>
-<strong>Aber IS-supported systems</strong> can connect to the server
-automatically.<br>
-</li>
-<li>
-<strong>All other systems</strong> (including CS desktops) require
-the <strong>Aberystwyth VPN</strong> to access the server.</li>
-</ul>
-<p><strong>VPN portals:</strong><br>
-- Wi-Fi (eduroam): <code>gp-vpn.aber.ac.uk</code><br>
-- Ethernet: <code>gp-vpn-int.aber.ac.uk</code></p>
-<p>If you encounter issues setting up the VPN, please contact
-<strong>Information Services (IS)</strong> by raising a support ticket
-at: <a href="mailto:is@aber.ac.uk">is@aber.ac.uk</a>.</p>
-</section><section><h2 class="section-heading" id="logging-in">Logging in<a class="anchor" aria-label="anchor" href="#logging-in"></a>
-</h2>
-<hr class="half-width">
-<p>Go ahead and log in to the Aberystwyth HPC cluster: {{ site.host_name
-}} at {{ site.host_location }}.</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">{{</span> site.local_prompt }} ssh yourUsername@{{ site.host_login }}</span></code></pre>
-</div>
-<p>Remember to replace <code>yourUsername</code> with the username
-supplied by the instructors. You will be asked for your password. But
-watch out, the characters you type are not displayed on the screen.</p>
-<div id="how-do-i-specify-common-ssh-options" class="callout">
+<p>Because <code>users.aber.ac.uk</code> serves personal user
+directories (<code>~/public_html</code>) via Apache without root
+privileges or background daemon permissions, standard
+<code>app.run()</code> development servers cannot be exposed directly.
+Instead, Plotly Dash applications must be wrapped as <strong>Common
+Gateway Interface (CGI)</strong> scripts using a standalone Conda
+environment.</p>
+<div id="how-cgi-differs-from-local-development" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <span class="callout-header">Callout</span>
-<div id="how-do-i-specify-common-ssh-options" class="callout-inner">
-<h3 class="callout-title">How do I specify common <code>ssh</code>
-options</h3>
+<div id="how-cgi-differs-from-local-development" class="callout-inner">
+<h3 class="callout-title">How CGI Differs from Local Development</h3>
 <div class="callout-content">
-<p>To reduce issues with connecting it can be useful to fix the settings
-to be used. For example <code>ssh</code> will try every key in your
-<code>~/.ssh</code> directory, and can trigger the banning of your
-machine from accessing the system if you have more than 1 key.</p>
-<p>On a Mac/Linux laptop/desktop you can add settings to
-<code>$HOME/.ssh/config</code> such as:</p>
+<p>When running <code>app.run()</code> locally, Python stays resident in
+memory. Under <strong>Apache CGI</strong>, the web server starts a
+brand-new Python interpreter from scratch for <strong>every</strong>
+page load, layout request, and callback trigger, then terminates it once
+the response is sent.</p>
+</div>
+</div>
+</div>
+<hr></section><section><h2 class="section-heading" id="directory-structure">1. Directory Structure<a class="anchor" aria-label="anchor" href="#directory-structure"></a>
+</h2>
+<hr class="half-width">
+<p>Create a <code>cgi-bin</code> directory inside your
+<code>public_html</code> folder to house your application, CGI entry
+point, and Apache routing rules:</p>
+<pre class="text"><code>~/public_html/
+└── cgi-bin/
+    ├── .htaccess       # Apache routing &amp; header configuration
+    ├── index.cgi       # Executable CGI entry point
+    └── app.py          # Your Plotly Dash application
+    </code></pre>
+</section><section><h2 class="section-heading" id="environment-setup">Environment Setup<a class="anchor" aria-label="anchor" href="#environment-setup"></a>
+</h2>
+<hr class="half-width">
+<p>Apache executes CGI scripts using a restricted system user (www-data
+or apache) that does not load your interactive shell profile
+(~/.bashrc). Create a dedicated Conda environment and reference its
+Python binary directly.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">Host</span> login01 bert.aber.ac.uk</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="ex">Hostname</span> bert.aber.ac.uk</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a><span class="ex">User</span> username</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a><span class="ex">IdentityFile</span> ~/.ssh/id_rsa-aber</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">conda</span> create <span class="at">-n</span> dash_app python=3.11 <span class="at">-y</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="ex">conda</span> activate dash_app</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a><span class="ex">pip</span> install dash dash-auth</span></code></pre>
 </div>
-<p>On Windows depending on software these settings can be set in the
-menu settings.</p>
-<p>Alternatively use <code>PreferredAuthentications password</code> to
-force ssh to always use only a password. This may be needed if ssh keys
-are available on your own computer but not used for Hawk and can trigger
-the banning of your machine when attempts with the keys are made.</p>
-<p>Other option is <code>SetEnv LANG=C</code> can be useful if a locale
-setting on your desktop is not supported on Hawk for some reason and
-causes text encoding issues.</p>
-</div>
-</div>
-</div>
-<p>You are logging in using a program known as the secure shell or
-<code>ssh</code>. This establishes a temporary encrypted connection
-between your laptop and <code>{{ site.host_login }}</code>. The word
-before the <code>@</code> symbol, e.g. <code>yourUsername</code> here,
-is the user account name that Lola has access permissions for on the
-cluster.</p>
-<div id="where-do-i-get-this-ssh-from" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="where-do-i-get-this-ssh-from" class="callout-inner">
-<h3 class="callout-title">Where do I get this <code>ssh</code> from
-?</h3>
-<div class="callout-content">
-<p>On Linux and/or macOS, the <code>ssh</code> command line utility is
-almost always pre-installed. Open a terminal and type
-<code>ssh --help</code> to check if that is the case.</p>
-<p>At the time of writing, the openssh support on Microsoft is still
-very <a href="https://blogs.msdn.microsoft.com/powershell/2017/12/15/using-the-openssh-beta-in-windows-10-fall-creators-update-and-windows-server-1709/" class="external-link">recent</a>.
-Alternatives to this are <a href="http://www.putty.org" class="external-link">putty</a>, <a href="https://www.bitvise.com/ssh-client-download" class="external-link">bitvise SSH</a>, <a href="https://mremoteng.org/" class="external-link">mRemoteNG</a> or <a href="https://mobaxterm.mobatek.net/" class="external-link">MobaXterm</a>. Download it,
-install it and open the GUI. The GUI asks for your user name and the
-destination address or IP of the computer you want to connect to. Once
-provided, you will be queried for your password just like in the example
-above.</p>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="where-are-we">Where are we?<a class="anchor" aria-label="anchor" href="#where-are-we"></a>
+</section><section><h2 class="section-heading" id="configure-apache--htaccess">Configure Apache (.htaccess)<a class="anchor" aria-label="anchor" href="#configure-apache--htaccess"></a>
 </h2>
 <hr class="half-width">
-<p>Very often, many users are tempted to think of a high-performance
-computing installation as one giant, magical machine. Sometimes, people
-will assume that the computer they’ve logged onto is the entire
-computing cluster. So what’s really happening? What computer have we
-logged on to? The name of the current computer we are logged onto can be
-checked with the <code>hostname</code> command. (You may also notice
-that the current hostname is also part of our prompt!)</p>
-<p>Aber:</p>
+<p>Create ~/public_html/cgi-bin/.htaccess to enable CGI execution, allow
+sub-path routing (AcceptPathInfo), and prevent Apache from stripping
+HTTP login credentials (CGIPassAuth):</p>
 <div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">APACHE<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">{{</span> site.host_prompt}} hostname</span></code></pre>
+<pre class="sourceCode apache" tabindex="0"><code class="sourceCode apache"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="ex">Options</span><span class="ch"> </span><span class="kw">+ExecCGI</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a>AddHandler<span class="st"> cgi-script .cgi</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a><span class="co"># Pass HTTP Basic Auth headers through to Python</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a>CGIPassAuth On</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1" aria-label="code-block-3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1" aria-label="code-block-3-7"></a><span class="fu">&lt;Files</span><span class="at"> "index.cgi"</span><span class="fu">&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1" aria-label="code-block-3-8"></a>    <span class="ex">AcceptPathInfo</span><span class="ch"> </span><span class="kw">On</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1" aria-label="code-block-3-9"></a><span class="fu">&lt;/Files&gt;</span></span></code></pre>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code><span><span class="op">{</span><span class="op">{</span> <span class="va">site.host_name</span> <span class="op">}</span><span class="op">}</span></span></code></pre>
-</div>
-</section><section><h2 class="section-heading" id="nodes">Nodes<a class="anchor" aria-label="anchor" href="#nodes"></a>
+</section><section><h2 class="section-heading" id="create-the-dash-application-app-py">Create the Dash Application (app.py)<a class="anchor" aria-label="anchor" href="#create-the-dash-application-app-py"></a>
 </h2>
 <hr class="half-width">
-<p>Individual computers that compose a cluster are typically called
-<em>nodes</em> (although you will also hear people call them
-<em>servers</em>, <em>computers</em> and <em>machines</em>). On a
-cluster, there are different types of nodes for different types of
-tasks. The node where you are right now is called the <em>head
-node</em>, <em>login node</em> or <em>submit node</em>. A login node
-serves as an access point to the cluster. As a gateway, it is well
-suited for uploading and downloading files, setting up software, and
-running quick tests. <strong>It should never be used for doing actual
-work</strong>.</p>
-<p>The real work on a cluster gets done by the <em>worker</em> (or
-<em>compute</em>) <em>nodes</em>. Worker nodes come in many shapes and
-sizes, but generally are dedicated to long or hard tasks that require a
-lot of computational resources.</p>
-<p>All interaction with the worker nodes is handled by a specialized
-piece of software called a scheduler (the scheduler used in this lesson
-is called {{ site.workshop_shed_name }}). We’ll learn more about how to
-use the scheduler to submit jobs next, but for now, it can also tell us
-more information about the worker nodes.</p>
-<p>For example, we can view all of the worker nodes with the
-<code>{{ site.sched_info }}</code> command <strong>(Same for both
-sites)</strong>.</p>
-<div class="codewrapper sourceCode" id="cb5">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<p>Standard Dash apps assume they are hosted at the root domain (/). On
+users.aber.ac.uk, your app lives under /~<username>/cgi-bin/index.cgi/.
+You must configure requests_pathname_prefix and routes_pathname_prefix
+so Dash’s internal AJAX requests (_dash-layout, _dash-dependencies)
+resolve properly.</username></p>
+<p>Create ~/public_html/cgi-bin/app.py (replacing <username> and
+<your name> with your details):</your></username></p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">{{</span> site.host_prompt}} {{ site.sched_info }}</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="im">import</span> sys</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a><span class="im">import</span> dash</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="im">from</span> dash <span class="im">import</span> html, dcc, Input, Output</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a><span class="im">import</span> dash_auth</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1" aria-label="code-block-4-6"></a><span class="co"># 1. URL Prefix MUST include the tilde (~) and trailing slash (/)</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1" aria-label="code-block-4-7"></a>URL_PREFIX <span class="op">=</span> <span class="st">'/~&lt;username&gt;/cgi-bin/index.cgi/'</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1" aria-label="code-block-4-8"></a></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1" aria-label="code-block-4-9"></a>VALID_USERS <span class="op">=</span> {</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1" aria-label="code-block-4-10"></a>    <span class="st">'admin'</span>: <span class="st">'change_this_password'</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1" aria-label="code-block-4-11"></a>}</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1" aria-label="code-block-4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1" aria-label="code-block-4-13"></a>app <span class="op">=</span> dash.Dash(</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1" aria-label="code-block-4-14"></a>    <span class="va">__name__</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1" aria-label="code-block-4-15"></a>    requests_pathname_prefix<span class="op">=</span>URL_PREFIX,</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1" aria-label="code-block-4-16"></a>    routes_pathname_prefix<span class="op">=</span><span class="st">'/'</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1" aria-label="code-block-4-17"></a>    serve_locally<span class="op">=</span><span class="va">False</span>  <span class="co"># Loads Dash JS/CSS from CDN to reduce CGI load</span></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1" aria-label="code-block-4-18"></a>)</span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1" aria-label="code-block-4-19"></a></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1" aria-label="code-block-4-20"></a><span class="co"># Expose the underlying Flask server for the CGI runner</span></span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1" aria-label="code-block-4-21"></a>server <span class="op">=</span> app.server</span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1" aria-label="code-block-4-22"></a></span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1" aria-label="code-block-4-23"></a><span class="co"># Optional: Enable Basic Authentication</span></span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1" aria-label="code-block-4-24"></a>auth <span class="op">=</span> dash_auth.BasicAuth(app, VALID_USERS)</span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1" aria-label="code-block-4-25"></a></span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1" aria-label="code-block-4-26"></a>app.layout <span class="op">=</span> html.Div([</span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1" aria-label="code-block-4-27"></a>    html.H2(<span class="st">"Aberystwyth Dash Deployment"</span>),</span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1" aria-label="code-block-4-28"></a>    dcc.Dropdown(</span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1" aria-label="code-block-4-29"></a>        <span class="bu">id</span><span class="op">=</span><span class="st">'demo-dropdown'</span>,</span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1" aria-label="code-block-4-30"></a>        options<span class="op">=</span>[<span class="st">'Option A'</span>, <span class="st">'Option B'</span>, <span class="st">'Option C'</span>],</span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1" aria-label="code-block-4-31"></a>        value<span class="op">=</span><span class="st">'Option A'</span></span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1" aria-label="code-block-4-32"></a>    ),</span>
+<span id="cb4-33"><a href="#cb4-33" tabindex="-1" aria-label="code-block-4-33"></a>    html.Div(<span class="bu">id</span><span class="op">=</span><span class="st">'output-div'</span>, style<span class="op">=</span>{<span class="st">'marginTop'</span>: <span class="st">'15px'</span>}),</span>
+<span id="cb4-34"><a href="#cb4-34" tabindex="-1" aria-label="code-block-4-34"></a>    </span>
+<span id="cb4-35"><a href="#cb4-35" tabindex="-1" aria-label="code-block-4-35"></a>    <span class="co"># Mandatory University Personal Responsibility Disclaimer</span></span>
+<span id="cb4-36"><a href="#cb4-36" tabindex="-1" aria-label="code-block-4-36"></a>    html.Footer(</span>
+<span id="cb4-37"><a href="#cb4-37" tabindex="-1" aria-label="code-block-4-37"></a>        html.P(</span>
+<span id="cb4-38"><a href="#cb4-38" tabindex="-1" aria-label="code-block-4-38"></a>            <span class="st">"The information provided on this and other pages by me, &lt;Your Name&gt; (&lt;username&gt;@aber.ac.uk), "</span></span>
+<span id="cb4-39"><a href="#cb4-39" tabindex="-1" aria-label="code-block-4-39"></a>            <span class="st">"is under my own personal responsibility and not that of Aberystwyth University. "</span></span>
+<span id="cb4-40"><a href="#cb4-40" tabindex="-1" aria-label="code-block-4-40"></a>            <span class="st">"Similarly, any opinions expressed are my own and are in no way to be taken as those of "</span></span>
+<span id="cb4-41"><a href="#cb4-41" tabindex="-1" aria-label="code-block-4-41"></a>            <span class="st">"Aberystwyth University."</span>,</span>
+<span id="cb4-42"><a href="#cb4-42" tabindex="-1" aria-label="code-block-4-42"></a>            style<span class="op">=</span>{<span class="st">'fontSize'</span>: <span class="st">'12px'</span>, <span class="st">'color'</span>: <span class="st">'#666'</span>, <span class="st">'marginTop'</span>: <span class="st">'40px'</span>}</span>
+<span id="cb4-43"><a href="#cb4-43" tabindex="-1" aria-label="code-block-4-43"></a>        )</span>
+<span id="cb4-44"><a href="#cb4-44" tabindex="-1" aria-label="code-block-4-44"></a>    )</span>
+<span id="cb4-45"><a href="#cb4-45" tabindex="-1" aria-label="code-block-4-45"></a>], style<span class="op">=</span>{<span class="st">'fontFamily'</span>: <span class="st">'sans-serif'</span>, <span class="st">'padding'</span>: <span class="st">'20px'</span>})</span>
+<span id="cb4-46"><a href="#cb4-46" tabindex="-1" aria-label="code-block-4-46"></a></span>
+<span id="cb4-47"><a href="#cb4-47" tabindex="-1" aria-label="code-block-4-47"></a><span class="at">@app.callback</span>(</span>
+<span id="cb4-48"><a href="#cb4-48" tabindex="-1" aria-label="code-block-4-48"></a>    Output(<span class="st">'output-div'</span>, <span class="st">'children'</span>),</span>
+<span id="cb4-49"><a href="#cb4-49" tabindex="-1" aria-label="code-block-4-49"></a>    Input(<span class="st">'demo-dropdown'</span>, <span class="st">'value'</span>)</span>
+<span id="cb4-50"><a href="#cb4-50" tabindex="-1" aria-label="code-block-4-50"></a>)</span>
+<span id="cb4-51"><a href="#cb4-51" tabindex="-1" aria-label="code-block-4-51"></a><span class="kw">def</span> update_output(val):</span>
+<span id="cb4-52"><a href="#cb4-52" tabindex="-1" aria-label="code-block-4-52"></a>    <span class="cf">return</span> <span class="ss">f"You selected: </span><span class="sc">{</span>val<span class="sc">}</span><span class="ss">"</span></span></code></pre>
 </div>
-<p>Aber:</p>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>{% include /snippets/12/info.snip %}</code></pre>
-</div>
-<p>There are also specialized machines used for managing disk storage,
-user authentication, and other infrastructure-related tasks. Although we
-do not typically logon to or interact with these machines directly, they
-enable a number of key features like ensuring our user account and files
-are available throughout the HPC system.</p>
-<div id="shared-file-systems" class="callout">
+<div id="callout2" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <span class="callout-header">Callout</span>
-<div id="shared-file-systems" class="callout-inner">
-<h3 class="callout-title">Shared file systems</h3>
+<div class="callout-inner">
 <div class="callout-content">
-<p>This is an important point to remember: files saved on one node
-(computer) are often available everywhere on the cluster!</p>
+<p>Warning: Never Use print() in CGI Scripts</p>
+<p>Any text written to stdout via print() is injected directly into the
+HTTP response stream before headers are finalized. When Dash requests
+JSON payloads (_dash-layout), stray print() statements will corrupt the
+JSON and crash the frontend with a SyntaxError: JSON.parse. Always write
+debug logs to sys.stderr.write(“message”) instead.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="whats-in-a-node">What’s in a node?<a class="anchor" aria-label="anchor" href="#whats-in-a-node"></a>
+</section><section><h2 class="section-heading" id="create-the-cgi-entry-point-index-cgi">Create the CGI Entry Point (index.cgi)<a class="anchor" aria-label="anchor" href="#create-the-cgi-entry-point-index-cgi"></a>
 </h2>
 <hr class="half-width">
-<p>All of a HPC system’s nodes have the same components as your own
-laptop or desktop: <em>CPUs</em> (sometimes also called
-<em>processors</em> or <em>cores</em>), <em>memory</em> (or
-<em>RAM</em>), and <em>disk</em> space. CPUs are a computer’s tool for
-actually running programs and calculations. Information about a current
-task is stored in the computer’s memory. Disk refers to all storage that
-can be accessed like a file system. This is generally storage that can
-hold data permanently, i.e. data is still there even if the computer has
-been restarted.</p>
-<p>{% include figure.html url=“” max-width=“40%”
-file=“/fig/node_anatomy.png” alt=“Node anatomy” caption=“” %}</p>
-<div id="explore-your-computer" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
+<p>Create ~/public_html/cgi-bin/index.cgi to enforce HTTPS environment
+variables (preventing browser Mixed Content blocks) and normalize
+PATH_INFO and SCRIPT_NAME for Flask/Dash:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="co">#!/aber/&lt;username&gt;/miniconda3/envs/dash_app/bin/python</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a><span class="im">import</span> os</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1" aria-label="code-block-5-4"></a><span class="im">import</span> sys</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1" aria-label="code-block-5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1" aria-label="code-block-5-6"></a><span class="co"># 1. Enforce HTTPS headers to prevent browser Mixed Content blocks</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1" aria-label="code-block-5-7"></a>os.environ[<span class="st">'wsgi.url_scheme'</span>] <span class="op">=</span> <span class="st">'https'</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1" aria-label="code-block-5-8"></a>os.environ[<span class="st">'HTTPS'</span>] <span class="op">=</span> <span class="st">'on'</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1" aria-label="code-block-5-9"></a>os.environ[<span class="st">'SERVER_PORT'</span>] <span class="op">=</span> <span class="st">'443'</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1" aria-label="code-block-5-10"></a>os.environ.setdefault(<span class="st">'REQUEST_METHOD'</span>, <span class="st">'GET'</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1" aria-label="code-block-5-11"></a>os.environ.setdefault(<span class="st">'SERVER_NAME'</span>, <span class="st">'users.aber.ac.uk'</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1" aria-label="code-block-5-12"></a></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1" aria-label="code-block-5-13"></a><span class="co"># 2. Ensure Conda site-packages and local folder are in path</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1" aria-label="code-block-5-14"></a>sys.path.insert(<span class="dv">0</span>, <span class="st">"/aber/&lt;username&gt;/miniconda3/envs/dash_app/lib/python3.11/site-packages"</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1" aria-label="code-block-5-15"></a>sys.path.insert(<span class="dv">0</span>, os.path.dirname(<span class="va">__file__</span>))</span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1" aria-label="code-block-5-16"></a></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1" aria-label="code-block-5-17"></a><span class="co"># 3. Normalize PATH_INFO and SCRIPT_NAME for Flask/Dash routing</span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1" aria-label="code-block-5-18"></a>raw_uri <span class="op">=</span> os.environ.get(<span class="st">'REQUEST_URI'</span>, <span class="st">''</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1" aria-label="code-block-5-19"></a><span class="cf">if</span> <span class="st">'index.cgi'</span> <span class="kw">in</span> raw_uri:</span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1" aria-label="code-block-5-20"></a>    sub_path <span class="op">=</span> raw_uri.split(<span class="st">'index.cgi'</span>, <span class="dv">1</span>)[<span class="dv">1</span>].split(<span class="st">'?'</span>, <span class="dv">1</span>)[<span class="dv">0</span>]</span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1" aria-label="code-block-5-21"></a>    os.environ[<span class="st">'PATH_INFO'</span>] <span class="op">=</span> sub_path <span class="cf">if</span> sub_path.startswith(<span class="st">'/'</span>) <span class="cf">else</span> <span class="st">'/'</span> <span class="op">+</span> sub_path</span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1" aria-label="code-block-5-22"></a>    os.environ[<span class="st">'SCRIPT_NAME'</span>] <span class="op">=</span> <span class="st">'/~&lt;username&gt;/cgi-bin/index.cgi'</span></span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1" aria-label="code-block-5-23"></a><span class="cf">else</span>:</span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1" aria-label="code-block-5-24"></a>    os.environ[<span class="st">'PATH_INFO'</span>] <span class="op">=</span> <span class="st">'/'</span></span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1" aria-label="code-block-5-25"></a>    os.environ[<span class="st">'SCRIPT_NAME'</span>] <span class="op">=</span> <span class="st">'/~&lt;username&gt;/cgi-bin/index.cgi'</span></span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1" aria-label="code-block-5-26"></a></span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1" aria-label="code-block-5-27"></a><span class="im">from</span> wsgiref.handlers <span class="im">import</span> CGIHandler</span>
+<span id="cb5-28"><a href="#cb5-28" tabindex="-1" aria-label="code-block-5-28"></a><span class="im">from</span> app <span class="im">import</span> server</span>
+<span id="cb5-29"><a href="#cb5-29" tabindex="-1" aria-label="code-block-5-29"></a></span>
+<span id="cb5-30"><a href="#cb5-30" tabindex="-1" aria-label="code-block-5-30"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
+<span id="cb5-31"><a href="#cb5-31" tabindex="-1" aria-label="code-block-5-31"></a>    CGIHandler().run(server)</span></code></pre>
 </div>
-<span class="callout-header">Challenge</span>
-<div id="explore-your-computer" class="callout-inner">
-<h3 class="callout-title">Explore Your Computer</h3>
-<div class="callout-content">
-<p>Try to find out the number of CPUs and amount of memory available on
-your personal computer.</p>
+</section><section><h2 class="section-heading" id="performance-best-practices-for-cgi">Performance Best Practices for CGI<a class="anchor" aria-label="anchor" href="#performance-best-practices-for-cgi"></a>
+</h2>
+<hr class="half-width">
+<p>Because standard CGI starts a fresh Python process on every
+interaction:</p>
+<ul>
+<li>Avoid Heavy Startup Pre-loading: Do not load large datasets or
+pre-render image arrays in global scope at the top of app.py—it will
+re-execute on every callback click. Load individual records or slices on
+demand inside callbacks or Flask routes.</li>
+<li>Use Lightweight Asset Formats: Prefer pre-converted .png or .jpg
+files over on-the-fly scientific decompression (e.g., compressed DICOM
+or multi-channel TIFFs) whenever possible.</li>
+<li>Leverage Browser Caching: When serving images or static assets
+through custom Flask routes, attach Cache-Control headers so the browser
+caches them locally:</li>
+</ul>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a>response.headers[<span class="st">"Cache-Control"</span>] <span class="op">=</span> <span class="st">"public, max-age=3600"</span></span></code></pre>
 </div>
-</div>
-</div>
-<div id="explore-the-login-node-same-for-both-sites" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="explore-the-login-node-same-for-both-sites" class="callout-inner">
-<h3 class="callout-title">Explore The Login Node (Same for both
-sites)</h3>
-<div class="callout-content">
-<p>Now we’ll compare the size of your computer with the size of the
-login node: To see the number of processors, run:</p>
+<ol start="7" style="list-style-type: decimal">
+<li>Set Permissions &amp; Verify Deployment</li>
+</ol>
+<p>Apache enforces strict security permissions on CGI scripts.
+Directories and .cgi scripts must be executable (755), while module
+files and .htaccess should not be world-writable (644):</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="ex">{{</span> site.host_prompt}} nproc <span class="at">--all</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="fu">chmod</span> 755 ~/public_html/cgi-bin</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a><span class="fu">chmod</span> 755 ~/public_html/cgi-bin/index.cgi</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a><span class="fu">chmod</span> 644 ~/public_html/cgi-bin/app.py</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a><span class="fu">chmod</span> 644 ~/public_html/cgi-bin/.htaccess</span></code></pre>
 </div>
-<p>How about memory? Try running:</p>
-<div class="codewrapper sourceCode" id="cb8">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">{{</span> site.host_prompt}} free <span class="at">-m</span></span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div id="getting-more-information-same-for-both-sites" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="getting-more-information-same-for-both-sites" class="callout-inner">
-<h3 class="callout-title">Getting more information (Same for both
-sites)</h3>
-<div class="callout-content">
-<p>You can get more detailed information on both the processors and
-memory by using different commands.</p>
-<p>For more information on processors use <code>lscpu</code></p>
-<div class="codewrapper sourceCode" id="cb9">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">{{</span> site.host_prompt}} lscpu</span></code></pre>
-</div>
-<p>For more information on memory you can look in the
-<code>/proc/meminfo</code> file:</p>
-<div class="codewrapper sourceCode" id="cb10">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="ex">{{</span> site.host_prompt}} cat /proc/meminfo</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<p>{% include /snippets/12/explore.snip %}</p>
-<div id="compare-your-computer-the-login-node-and-the-worker-node" class="callout challenge">
+<div id="challenge1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="compare-your-computer-the-login-node-and-the-worker-node" class="callout-inner">
-<h3 class="callout-title">Compare Your Computer, the Login Node and the
-Worker Node</h3>
-<div class="callout-content">
-<p>Compare your laptop’s number of processors and memory with the
-numbers you see on the cluster login node and worker node. Discuss the
-differences with your neighbor. What implications do you think the
-differences might have on running your research work on the different
-systems and nodes?</p>
-</div>
-</div>
-</div>
-<div id="units-and-language" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="units-and-language" class="callout-inner">
-<h3 class="callout-title">Units and Language</h3>
-<div class="callout-content">
-<p>A computer’s memory and disk are measured in units called
-<em>Bytes</em> (one Byte is 8 bits). As today’s files and memory have
-grown to be large given historic standards, volumes are noted using the
-<a href="https://en.wikipedia.org/wiki/International_System_of_Units" class="external-link">SI</a>
-prefixes.</p>
-<p>So 1000 Bytes is a Kilobyte (kB), 1000 Kilobytes is a Megabyte, 1000
-Megabytes is a Gigabyte etc.</p>
-<p>History and common language have however mixed this notation with a
-different meaning. When people say “Kilobyte”, they mean 1024 Bytes
-instead. In that spirit, a Megabyte are 1024 Kilobytes. To address this
-ambiguity, the <a href="https://en.wikipedia.org/wiki/International_System_of_Quantities" class="external-link">International
-System of Quantities</a> standardizes the binary prefixes (with base of
-1024) by the prefixes kibi, mibi, gibi, etc. For more details, see <a href="https://en.wikipedia.org/wiki/Binary_prefix" class="external-link">here</a></p>
-</div>
-</div>
-</div>
-<div id="differences-between-nodes" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div id="differences-between-nodes" class="callout-inner">
-<h3 class="callout-title">Differences Between Nodes</h3>
-<div class="callout-content">
-<p>Many HPC clusters have a variety of nodes optimized for particular
-workloads. Some nodes may have larger amount of memory, or specialized
-resources such as Graphical Processing Units (GPUs).</p>
-</div>
-</div>
-</div>
-<p>With all of this in mind, we will now cover how to talk to the
-cluster’s scheduler, and use it to start running our scripts and
-programs!</p>
-</section><section><h2 class="section-heading" id="details-about-the-server">Details about the server<a class="anchor" aria-label="anchor" href="#details-about-the-server"></a>
-</h2>
-<hr class="half-width">
-<p>Below is a detailed image showing the configuration of the server
-along with all its partitions.</p>
-<p>{% include figure.html max-width=“80%” file=“/fig/hpc_upgrade.png”
-alt=“Schematic of how a computer works” caption=“” %}</p>
-</section><section><h2 class="section-heading" id="hpc-hardware-overview">HPC Hardware Overview<a class="anchor" aria-label="anchor" href="#hpc-hardware-overview"></a>
-</h2>
-<hr class="half-width">
-<div class="section level3">
-<h3 id="bert-log-in-node-tdp-120w">Bert (Log-in Node) — TDP 120W<a class="anchor" aria-label="anchor" href="#bert-log-in-node-tdp-120w"></a>
-</h3>
-<ul>
-<li>
-<strong>CPU:</strong> AMD EPYC 7252 (8-Core, 120W)<br>
-</li>
-<li>
-<strong>Memory:</strong> 48GB</li>
-</ul>
-<hr>
-</div>
-<div class="section level3">
-<h3 id="ernie-x3-tdp-200w-each-total-600w">Ernie (x3) — TDP 200W each | Total 600W<a class="anchor" aria-label="anchor" href="#ernie-x3-tdp-200w-each-total-600w"></a>
-</h3>
-<ul>
-<li>
-<strong>CPU:</strong> AMD EPYC 7552 (48-Core, 2.2GHz, 200W)<br>
-</li>
-<li>
-<strong>Memory:</strong> 384GB</li>
-</ul>
-<hr>
-</div>
-<div class="section level3">
-<h3 id="hpc-gn-ampere-01-am-01-tdp-2880w">hpc-gn-ampere-01 (AM-01) — TDP 2880W<a class="anchor" aria-label="anchor" href="#hpc-gn-ampere-01-am-01-tdp-2880w"></a>
-</h3>
-<ul>
-<li>
-<strong>GPU:</strong> 8 × NVIDIA A100 (80GB VRAM each, 300W | 2400W
-total)<br>
-</li>
-<li>
-<strong>CPU:</strong> 2 × AMD EPYC 7F72 (24-Core, 240W | 480W
-total)<br>
-</li>
-<li>
-<strong>Memory:</strong> 2TB</li>
-</ul>
-<hr>
-</div>
-<div class="section level3">
-<h3 id="hpc-ci-cascade-lake-01-cl-01-tdp-410w">hpc-ci-cascade-lake-01 (CL-01) — TDP 410W<a class="anchor" aria-label="anchor" href="#hpc-ci-cascade-lake-01-cl-01-tdp-410w"></a>
-</h3>
-<ul>
-<li>
-<strong>CPU:</strong> 2 × Intel Xeon Gold 6248R (3.0GHz, 205W | 410W
-total)<br>
-</li>
-<li>
-<strong>Memory:</strong> 1.5TB</li>
-</ul>
-<hr>
-</div>
-<div class="section level3">
-<h3 id="hpc-gnw-ampere-02-am-02-tdp-880w">hpc-gnw-ampere-02 (AM-02) — TDP 880W<a class="anchor" aria-label="anchor" href="#hpc-gnw-ampere-02-am-02-tdp-880w"></a>
-</h3>
-<ul>
-<li>
-<strong>GPU:</strong> 2 × NVIDIA RTX A6000 (48GB VRAM each, 300W |
-600W total)<br>
-</li>
-<li>
-<strong>CPU:</strong> AMD Ryzen Threadripper PRO 3975WX (280W)<br>
-</li>
-<li>
-<strong>Memory:</strong> 128GB</li>
-</ul>
-<hr>
-</div>
-<div class="section level3">
-<h3 id="hpc-gn-ampere-03-am-03-tdp-2800w">hpc-gn-ampere-03 (AM-03) — TDP 2800W<a class="anchor" aria-label="anchor" href="#hpc-gn-ampere-03-am-03-tdp-2800w"></a>
-</h3>
-<ul>
-<li>
-<strong>GPU:</strong> 8 × NVIDIA A100 (80GB VRAM each, 300W | 2400W
-total)<br>
-</li>
-<li>
-<strong>CPU:</strong> 2 × AMD EPYC 7702 (64-Core, 200W | 400W
-total)<br>
-</li>
-<li>
-<strong>Memory:</strong> 2TB</li>
-</ul>
-<hr>
-</div>
-<div class="section level3">
-<h3 id="hpc-gn-ampere-04-am-04-tdp-2800w">hpc-gn-ampere-04 (AM-04) — TDP 2800W<a class="anchor" aria-label="anchor" href="#hpc-gn-ampere-04-am-04-tdp-2800w"></a>
-</h3>
-<ul>
-<li>
-<strong>GPU:</strong> 8 × NVIDIA A100 (80GB VRAM each, 300W | 2400W
-total)<br>
-</li>
-<li>
-<strong>CPU:</strong> 2 × AMD EPYC 7702 (64-Core, 200W | 400W
-total)<br>
-</li>
-<li>
-<strong>Memory:</strong> 2TB</li>
-</ul>
-<hr>
-</div>
-<div class="section level3">
-<h3 id="hpc-gn-pascal-01-pa-01-tdp-625w">hpc-gn-pascal-01 (PA-01) — TDP 625W<a class="anchor" aria-label="anchor" href="#hpc-gn-pascal-01-pa-01-tdp-625w"></a>
-</h3>
-<ul>
-<li>
-<strong>GPU:</strong> 2 × NVIDIA Tesla P100 (16GB VRAM each, 250W |
-500W total)<br>
-</li>
-<li>
-<strong>CPU:</strong> Intel Xeon Gold 6130 (2.1GHz, 125W)<br>
-</li>
-<li>
-<strong>Memory:</strong> 48GB<br>
-</li>
-<li>
-<strong>Note:</strong> Legacy GPU server</li>
-</ul>
-<hr>
-</div>
-<div class="section level3">
-<h3 id="hpc-gn-hopper-01-ho-01-tdp-3520w">hpc-gn-hopper-01 (HO-01) — TDP 3520W<a class="anchor" aria-label="anchor" href="#hpc-gn-hopper-01-ho-01-tdp-3520w"></a>
-</h3>
-<ul>
-<li>
-<strong>GPU:</strong> 4 × NVIDIA H100 (94GB VRAM each, 700W | 2800W
-total, configurable to 400W each)<br>
-</li>
-<li>
-<strong>CPU:</strong> 2 × AMD EPYC Genoa 9654 (96-Core, 2.4GHz, 360W
-| 720W total)<br>
-</li>
-<li>
-<strong>Memory:</strong> 2TB</li>
-</ul>
-<hr>
-</div>
-<div class="section level3">
-<h3 id="cascade-lake-cluster-cl-02-to-cl-06-tdp-250w-standard-750w-optional">Cascade Lake Cluster (CL-02 to CL-06) — TDP 250W (standard) | 750W
-(optional)<a class="anchor" aria-label="anchor" href="#cascade-lake-cluster-cl-02-to-cl-06-tdp-250w-standard-750w-optional"></a>
-</h3>
-<ul>
-<li>
-<strong>Nodes:</strong> CL-02, CL-03, CL-04, CL-05, CL-06<br>
-</li>
-<li>
-<strong>CPU (each):</strong> 2 × Intel Xeon Gold 6254 (3.1GHz, 125W
-| 250W total)<br>
-</li>
-<li>
-<strong>Memory (each):</strong> 768GB</li>
-</ul>
-<hr>
-</div>
-<div class="section level3">
-<h3 id="hpc-ca-genoa-01-ge-01-tdp-115w">hpc-ca-genoa-01 (GE-01) — TDP 115W<a class="anchor" aria-label="anchor" href="#hpc-ca-genoa-01-ge-01-tdp-115w"></a>
-</h3>
-<ul>
-<li>
-<strong>CPU:</strong> Intel Xeon E5-2620 v4 (2.1GHz, 115W)<br>
-</li>
-<li>
-<strong>Memory:</strong> 1TB</li>
-</ul>
-<hr>
-</div>
-<div class="section level3">
-<h3 id="hpc-gn-ampere-05-am-05-tdp-455w">hpc-gn-ampere-05 (AM-05) — TDP 455W<a class="anchor" aria-label="anchor" href="#hpc-gn-ampere-05-am-05-tdp-455w"></a>
-</h3>
-<ul>
-<li>
-<strong>GPU:</strong> 1 × NVIDIA A100 (40GB VRAM, 300W)<br>
-</li>
-<li>
-<strong>CPU:</strong> AMD EPYC 7452 (155W)<br>
-</li>
-<li>
-<strong>Memory:</strong> 768GB</li>
-</ul>
-<div id="keypoints1" class="callout keypoints">
-<div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
-</div>
-<span class="callout-header">Key Points</span>
 <div class="callout-inner">
+<h3 class="callout-title">Challenge</h3>
 <div class="callout-content">
-<ul>
-<li>“An HPC system is a set of networked machines.”</li>
-<li>“HPC systems typically provides login nodes and a set of worker
-nodes.”</li>
-<li>“The resources found on independent (worker) nodes can vary in
-volume and type (amount of RAM, processor architecture, availability of
-network mounted file systems, etc.).”</li>
-<li>“Files saved on one node are available on all nodes.”</li>
-</ul>
+<p>Exercise: Simulate an HTTP Request via SSH</p>
+<p>Before opening your browser, test your CGI pipeline directly from the
+terminal to verify that Python initializes cleanly without throwing a
+500 Internal Server Error.</p>
+<p>Run a simulated GET request against your index.cgi script for the
+_dash-layout endpoint. What HTTP status code do you expect if Basic
+Authentication is enabled?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>Solution</p>
+<p>Run the following command in your SSH session:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="va">REQUEST_METHOD</span><span class="op">=</span>GET <span class="va">REQUEST_URI</span><span class="op">=</span><span class="st">"/~&lt;username&gt;/cgi-bin/index.cgi/_dash-layout"</span> <span class="ex">~/public_html/cgi-bin/index.cgi</span></span></code></pre>
+</div>
+<p>If dash_auth.BasicAuth is active and no credentials are passed in the
+terminal environment, you should see:</p>
+<pre class="http"><code>Status: 401 UNAUTHORIZED
+WWW-Authenticate: Basic realm="User Visible Realm"
+Content-Type: text/html; charset=utf-8</code></pre>
+<p>If authentication is disabled, you will see Status: 200 OK followed
+by the JSON layout definition. Any Python Traceback printed here
+indicates a syntax, import, or path error in app.py or index.cgi.</p>
 </div>
 </div>
 </div>
 </div>
-</section></section><section id="aio-03-lists_and_dictionaries"><p>Content from <a href="03-lists_and_dictionaries.html">Walkthrough of DMP Components</a></p>
-<hr>
-<p>Last updated on 2026-11-12 |
-
-        <a href="https://github.com/corcor27/HCRW-workshop/edit/main/episodes/03-lists_and_dictionaries.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>Formats &amp; Workflows: “What software tools in your lab create
-locked or proprietary binary formats? Is there an automated pipeline or
-export script you could use to save open-standard copies?”</li>
-<li>Ethical Sharing: “If your study involves sensitive human participant
-data, how can you write your Participant Information Sheets (PIS) so
-that consent explicitly allows sharing anonymized data long-term?”</li>
-<li>Costing &amp; Budgeting: “Have you ever included data management
-hardware, cloud storage, or curation effort line-items in a grant
-budget? Why or why not?”</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>Identify the 6 Core Pillars of standard funding agency DMP
-templates.</li>
-<li>Select Preservation Formats: Distinguish between proprietary working
-formats and open-standard preservation formats.</li>
-<li>Design Metadata &amp; Documentation Assets: Structure a standardized
-README.txt file and data dictionary.</li>
-<li>Formulate Ethical &amp; Security Protocols: Establish appropriate
-anonymization, encryption, and access control measures for sensitive
-data.</li>
-<li>Implement the 3-2-1 Backup Strategy: Build a resilient storage and
-backup pipeline.</li>
-<li>Assign Data Stewardship Roles: Define explicit data management
-responsibilities and budget for curation costs in grant proposals.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="keypoints1" class="callout keypoints">
-<div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
-</div>
-<span class="callout-header">Key Points</span>
-<div class="callout-inner">
-<div class="callout-content">
-<ul>
-<li>Standardize Formats Early: Always preserve an open-standard copy
-(.csv, .pdf, .flac, .tif) alongside your proprietary working files to
-ensure long-term readability.</li>
-<li>Document for a Stranger: Assume the person re-using your dataset has
-never spoken to you. Provide self-contained README files and data
-dictionaries.</li>
-<li>Protect Sensitive Data at the Consent Stage: Ethical data sharing
-begins with how informed consent forms are written. Include explicit
-wording permitting secondary research on anonymized outputs.</li>
-<li>Enforce 3-2-1 Backups: Never rely on a single laptop, USB drive, or
-unmanaged personal cloud folder for active research data.</li>
-<li>Assign Named Roles: Clearly assign named individuals (e.g., lead
-post-doc, lab manager, PI) to specific data tasks so accountability
-doesn’t fall through the cracks.</li>
-</ul>
-</div>
-</div>
-</div></section>
+<p>Browser Access</p>
+<p>Navigate to the full URL including the trailing slash:</p>
+<pre class="text"><code>[https://users.aber.ac.uk/~](https://users.aber.ac.uk/~)&lt;username&gt;/cgi-bin/index.cgi/</code></pre>
+</section></section>
 </div>
     </main>
 </div>
