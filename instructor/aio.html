@@ -550,9 +550,9 @@ caches them locally:</li>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a>response.headers[<span class="st">"Cache-Control"</span>] <span class="op">=</span> <span class="st">"public, max-age=3600"</span></span></code></pre>
 </div>
-<ol start="7" style="list-style-type: decimal">
-<li>Set Permissions &amp; Verify Deployment</li>
-</ol>
+</section><section><h2 class="section-heading" id="set-permissions-verify-deployment">Set Permissions &amp; Verify Deployment<a class="anchor" aria-label="anchor" href="#set-permissions-verify-deployment"></a>
+</h2>
+<hr class="half-width">
 <p>Apache enforces strict security permissions on CGI scripts.
 Directories and .cgi scripts must be executable (755), while module
 files and .htaccess should not be world-writable (644):</p>
@@ -587,7 +587,7 @@ Authentication is enabled?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Solution</p>
 <p>Run the following command in your SSH session:</p>
@@ -611,7 +611,61 @@ indicates a syntax, import, or path error in app.py or index.cgi.</p>
 <p>Browser Access</p>
 <p>Navigate to the full URL including the trailing slash:</p>
 <pre class="text"><code>[https://users.aber.ac.uk/~](https://users.aber.ac.uk/~)&lt;username&gt;/cgi-bin/index.cgi/</code></pre>
-</section></section>
+</section><section><h2 class="section-heading" id="troubleshooting-reference">Troubleshooting Reference<a class="anchor" aria-label="anchor" href="#troubleshooting-reference"></a>
+</h2>
+<hr class="half-width">
+<table class="table">
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr>
+<th align="left">Symptom</th>
+<th align="left">Root Cause</th>
+<th align="left">Fix</th>
+</tr></thead>
+<tbody>
+<tr>
+<td align="left"><strong><code>404 Not Found</code> on
+layout</strong></td>
+<td align="left">Missing trailing slash <code>/</code> in the URL or
+missing <code>~</code> in <code>URL_PREFIX</code>.</td>
+<td align="left">Always visit <code>.../index.cgi/</code> and match
+<code>requests_pathname_prefix</code> exactly.</td>
+</tr>
+<tr>
+<td align="left"><strong><code>JSON.parse</code>
+SyntaxError</strong></td>
+<td align="left">Calling <code>print()</code> writes text to
+<code>stdout</code>, corrupting Dash’s JSON responses.</td>
+<td align="left">Remove all <code>print()</code> calls; write debug logs
+to <code>sys.stderr.write()</code>.</td>
+</tr>
+<tr>
+<td align="left"><strong>Infinite Login Prompt Loop</strong></td>
+<td align="left">Apache strips the <code>Authorization</code> header on
+internal AJAX requests.</td>
+<td align="left">Add <code>CGIPassAuth On</code> to
+<code>.htaccess</code>.</td>
+</tr>
+<tr>
+<td align="left"><strong>Broken images on custom routes</strong></td>
+<td align="left">
+<code>dash-auth</code> blocks image routes because
+<code>&lt;img&gt;</code> tags omit auth headers.</td>
+<td align="left">Subclass <code>dash_auth.BasicAuth</code> and override
+<code>is_authorized()</code> to whitelist image paths.</td>
+</tr>
+<tr>
+<td align="left"><strong><code>500 Internal Server Error</code></strong></td>
+<td align="left">Insecure permissions (<code>777</code>) or invalid
+shebang path in <code>index.cgi</code>.</td>
+<td align="left">Run <code>chmod 755</code> on scripts/folders and test
+via SSH terminal simulation.</td>
+</tr>
+</tbody>
+</table></section></section>
 </div>
     </main>
 </div>
