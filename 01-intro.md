@@ -185,7 +185,7 @@ Because standard CGI starts a fresh Python process on every interaction:
 response.headers["Cache-Control"] = "public, max-age=3600"
 ```
 
-7. Set Permissions & Verify Deployment
+## Set Permissions & Verify Deployment
 
 Apache enforces strict security permissions on CGI scripts. Directories and .cgi scripts must be executable (755), while module files and .htaccess should not be world-writable (644):
 
@@ -232,4 +232,13 @@ Navigate to the full URL including the trailing slash:
 [https://users.aber.ac.uk/~](https://users.aber.ac.uk/~)<username>/cgi-bin/index.cgi/
 ```
 
+## Troubleshooting Reference
+
+| Symptom | Root Cause | Fix |
+| :--- | :--- | :--- |
+| **`404 Not Found` on layout** | Missing trailing slash `/` in the URL or missing `~` in `URL_PREFIX`. | Always visit `.../index.cgi/` and match `requests_pathname_prefix` exactly. |
+| **`JSON.parse` SyntaxError** | Calling `print()` writes text to `stdout`, corrupting Dash's JSON responses. | Remove all `print()` calls; write debug logs to `sys.stderr.write()`. |
+| **Infinite Login Prompt Loop** | Apache strips the `Authorization` header on internal AJAX requests. | Add `CGIPassAuth On` to `.htaccess`. |
+| **Broken images on custom routes** | `dash-auth` blocks image routes because `<img>` tags omit auth headers. | Subclass `dash_auth.BasicAuth` and override `is_authorized()` to whitelist image paths. |
+| **`500 Internal Server Error`** | Insecure permissions (`777`) or invalid shebang path in `index.cgi`. | Run `chmod 755` on scripts/folders and test via SSH terminal simulation. |
 
