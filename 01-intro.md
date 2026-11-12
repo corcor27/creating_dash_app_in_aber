@@ -81,7 +81,7 @@ from dash import html, dcc, Input, Output
 import dash_auth
 
 # 1. URL Prefix MUST include the tilde (~) and trailing slash (/)
-URL_PREFIX = '/~<username>/cgi-bin/index.cgi/'
+URL_PREFIX = '/<username>/cgi-bin/index.cgi/'
 
 VALID_USERS = {
     'admin': 'change_this_password'
